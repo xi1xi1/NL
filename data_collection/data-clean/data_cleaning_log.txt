@@ -1,0 +1,92 @@
+﻿阶段一：已确认仅在原始数据备份目录读取数据，输出统一写入 output 目录；并将关键原始文件同步复制到原始数据备份根目录。
+阶段2.1：platform_cases.csv 共 104 条，已补全 like_count/video_type/stance/main_viewpoint，输出 platform_cases_clean.csv。
+阶段2.2：QQ音乐评论原始 492 条，已转换为统一结构并新增标签空列，输出 qqmusic_comments_clean.csv。
+阶段3.1：微博主帖原始 905 条，按 post_id 去重后 905 条，删除无效帖 2 条，保留有效 903 条，输出 weibo_posts_clean.csv。
+阶段4.1：微博转发原始 2503 条，已删除空列 repost_user_desc/repost_user_verified，统一时间格式并补齐标签列，输出 weibo_reposts_clean.csv。
+阶段5.1：总表 all_weibo_texts_clean.csv 已生成，包含 903 条 posts + 2503 条 reposts，共 3406 条。
+阶段6.1：已创建 label_rules.xlsx，初始化 19 条关键词规则。
+阶段七：已完成最终检查，output 下 7 个目标文件齐全，CSV 与 Excel 可正常读取。
+
+[2026-05-29 21:20:46] 阶段2文本清洗：处理 3406 条，清洗后非空 3406 条。
+[2026-05-29 21:20:46] 阶段2自动标注：跳过已有人为标注 0 条，本轮自动标注应用于 3406 条，命中 958 条，命中率 28.13%。
+
+[2026-05-29 21:35:42] 第三轮处理：已填充 all_weibo event_stage，分布 unclear:3197, cooldown:119, response:51, debate:30, outbreak:8, pre_event:1。
+[2026-05-29 21:35:42] 第三轮处理：all_weibo keyword_hit 已补全 958 行，QQ 评论 keyword_hit 已补全 94 行。
+[2026-05-29 21:35:42] 第三轮处理：QQ 评论已清洗 text_raw -> text_clean，并自动标注 stance/frame/emotion 52 条。
+[2026-05-29 21:35:42] 第三轮处理：weibo_posts_clean.csv 与 weibo_reposts_clean.csv 已同步 event_stage 和 keyword_hit。
+[2026-05-29 21:35:42] 第三轮处理：已生成高频词 Top50 与新增规则建议，共建议 9 条。
+[2026-05-29 21:35:42] 第三轮处理：QQ event_stage 分布 cooldown:492。
+
+[2026-05-29 21:37:54] 第三轮处理：已填充 all_weibo event_stage，分布 unclear:3197, cooldown:119, response:51, debate:30, outbreak:8, pre_event:1。
+[2026-05-29 21:37:54] 第三轮处理：all_weibo keyword_hit 已补全 958 行，QQ 评论 keyword_hit 已补全 94 行。
+[2026-05-29 21:37:54] 第三轮处理：QQ 评论已清洗 text_raw -> text_clean，并自动标注 stance/frame/emotion 52 条。
+[2026-05-29 21:37:54] 第三轮处理：weibo_posts_clean.csv 与 weibo_reposts_clean.csv 已同步 event_stage 和 keyword_hit。
+[2026-05-29 21:37:54] 第三轮处理：已生成高频词 Top50 与新增规则建议，共建议 10 条。
+[2026-05-29 21:37:54] 第三轮处理：QQ event_stage 分布 cooldown:492。
+
+[2026-05-29 22:39:55] 第三轮修复：统一重解析 publish_time，缺年份默认补 2026，今天/昨天/前天按 2026-05-29 参照展开。
+[2026-05-29 22:39:55] 第三轮修复：all_weibo event_stage 由 unclear 3197 条降至 2502 条，分布 {'unclear': 2502, 'cooldown': 808, 'response': 51, 'debate': 36, 'outbreak': 8, 'pre_event': 1}。
+[2026-05-29 22:39:55] 第三轮修复：weibo_posts_clean event_stage 由 unclear 695 条降至 0 条，分布 {'cooldown': 808, 'response': 51, 'debate': 36, 'outbreak': 8}。
+[2026-05-29 22:39:55] 第三轮修复：weibo_reposts_clean event_stage 由 unclear 2502 条降至 2502 条，分布 {'unclear': 2502, 'pre_event': 1}。
+[2026-05-29 22:39:55] 第三轮修复：qqmusic_comments_clean event_stage 由 unclear 0 条降至 0 条，分布 {'cooldown': 492}。
+[2026-05-29 22:39:55] 第三轮修复：已同步回写 all_weibo_texts_clean.csv、weibo_posts_clean.csv、weibo_reposts_clean.csv 和 qqmusic_comments_clean.csv。
+
+[2026-05-29 22:41:38] 第三轮修复：统一重解析 publish_time，缺年份默认补 2026，今天/昨天/前天按 2026-05-29 参照展开。
+[2026-05-29 22:41:38] 第三轮修复：all_weibo event_stage 由 unclear 2502 条降至 0 条，分布 {'response': 1824, 'cooldown': 809, 'debate': 764, 'outbreak': 8, 'pre_event': 1}。
+[2026-05-29 22:41:38] 第三轮修复：weibo_posts_clean event_stage 由 unclear 0 条降至 0 条，分布 {'cooldown': 808, 'response': 51, 'debate': 36, 'outbreak': 8}。
+[2026-05-29 22:41:38] 第三轮修复：weibo_reposts_clean event_stage 由 unclear 2502 条降至 0 条，分布 {'response': 1773, 'debate': 728, 'pre_event': 1, 'cooldown': 1}。
+[2026-05-29 22:41:38] 第三轮修复：qqmusic_comments_clean event_stage 由 unclear 0 条降至 0 条，分布 {'cooldown': 492}。
+[2026-05-29 22:41:38] 第三轮修复：已同步回写 all_weibo_texts_clean.csv、weibo_posts_clean.csv、weibo_reposts_clean.csv 和 qqmusic_comments_clean.csv。
+
+[2026-05-30 20:50:39] 第四轮处理：B 评论原始 76121 条，按 comment_id 去重后 63906 条，comment_text 为空 0 条。
+[2026-05-30 20:50:39] 第四轮处理：unique source_post_id 18 个，其中 18 个可在主帖表匹配，匹配比例 100.00%。
+[2026-05-30 20:50:39] 第四轮处理：按 source_post_id 主帖收敛后剩余 76121 条，进一步按 like_count 截断后最终保留 5000 条。
+[2026-05-30 20:50:39] 第四轮处理：已生成 weibo_comments_clean.csv 5000 条，并追加到总表；当前总表最终 8406 条。
+[2026-05-30 20:50:39] 第四轮处理：总表 event_stage 分布 {'response': 6074, 'debate': 1431, 'cooldown': 809, 'outbreak': 91, 'pre_event': 1}。
+[2026-05-30 20:50:39] 第四轮处理：评论 keyword_hit 命中 766 条，命中率 15.32%；评论 event_stage 分布 {'response': 4250, 'debate': 667, 'outbreak': 83}。
+[2026-05-30 20:50:39] 第四轮处理：已同步回写 weibo_posts_clean.csv、weibo_reposts_clean.csv、weibo_comments_clean.csv 与 all_weibo_texts_clean.csv。
+
+[2026-05-30 21:13:52] 收尾处理：author_type 已统一中文映射，涉及 all_weibo 7508 条、posts 5 条、reposts 0 条、comments 0 条。
+[2026-05-30 21:13:52] 收尾处理：frame 中 public_opinion_operation 已统一为 platform_meta，累计替换 82 行。stance 无新增非法值，emotion 统一保留为 unclear。
+[2026-05-30 21:13:52] 收尾处理：已将 label_rules.xlsx 的新增规则建议追加到关键词规则，共新增 10 条；对 stance/frame 仍为 unclear 的文本进行重标注，额外命中 573 条，关键词命中 1406 条。
+[2026-05-30 21:13:52] 收尾处理：当前总表 8406 条，stance 分布 {'unclear': 6846, 'support_zhang': 990, 'anti_fanwar': 363, 'neutral': 180, 'support_wang': 27}，frame 分布 {'unclear': 7246, 'creator_identity': 410, 'copyright_authorization': 277, 'legal_discussion': 222, 'public_opinion_operation': 210, 'platform_meta': 41}，event_stage 分布 {'response': 6074, 'debate': 1431, 'cooldown': 809, 'outbreak': 91, 'pre_event': 1}，emotion 非空率 100.00%。
+[2026-05-30 21:13:52] 收尾处理：已同步回写 all_weibo_texts_clean.csv、weibo_posts_clean.csv、weibo_reposts_clean.csv、weibo_comments_clean.csv、qqmusic_comments_clean.csv 与 label_rules.xlsx。
+
+[2026-05-30 21:15:58] 收尾处理：author_type 已统一中文映射，涉及 all_weibo 0 条、posts 0 条、reposts 0 条、comments 0 条。
+[2026-05-30 21:15:58] 收尾处理：frame 中 public_opinion_operation 已统一为 platform_meta，累计替换 447 行。stance 无新增非法值，emotion 统一保留为 unclear。
+[2026-05-30 21:15:58] 收尾处理：已将 label_rules.xlsx 的新增规则建议追加到关键词规则，共新增 10 条；对 stance/frame 仍为 unclear 的文本进行重标注，额外命中 45 条，关键词命中 1692 条。
+[2026-05-30 21:15:58] 收尾处理：当前总表 8406 条，stance 分布 {'unclear': 6846, 'support_zhang': 990, 'anti_fanwar': 363, 'neutral': 180, 'support_wang': 27}，frame 分布 {'unclear': 7201, 'creator_identity': 410, 'copyright_authorization': 289, 'platform_meta': 251, 'legal_discussion': 222, 'public_opinion_operation': 33}，event_stage 分布 {'response': 6074, 'debate': 1431, 'cooldown': 809, 'outbreak': 91, 'pre_event': 1}，emotion 非空率 100.00%。
+[2026-05-30 21:15:58] 收尾处理：已同步回写 all_weibo_texts_clean.csv、weibo_posts_clean.csv、weibo_reposts_clean.csv、weibo_comments_clean.csv、qqmusic_comments_clean.csv 与 label_rules.xlsx。
+
+[2026-05-30 21:17:12] 收尾处理：author_type 已统一中文映射，涉及 all_weibo 0 条、posts 0 条、reposts 0 条、comments 0 条。
+[2026-05-30 21:17:12] 收尾处理：frame 中 public_opinion_operation 已统一为 platform_meta，累计替换 490 行。stance 无新增非法值，emotion 统一保留为 unclear。
+[2026-05-30 21:17:12] 收尾处理：已将 label_rules.xlsx 的新增规则建议追加到关键词规则，共新增 10 条；对 stance/frame 仍为 unclear 的文本进行重标注，额外命中 0 条，关键词命中 1647 条。
+[2026-05-30 21:17:12] 收尾处理：当前总表 8406 条，stance 分布 {'unclear': 6846, 'support_zhang': 990, 'anti_fanwar': 363, 'neutral': 180, 'support_wang': 27}，frame 分布 {'unclear': 7201, 'creator_identity': 410, 'copyright_authorization': 289, 'platform_meta': 284, 'legal_discussion': 222}，event_stage 分布 {'response': 6074, 'debate': 1431, 'cooldown': 809, 'outbreak': 91, 'pre_event': 1}，emotion 非空率 100.00%。
+[2026-05-30 21:17:12] 收尾处理：已同步回写 all_weibo_texts_clean.csv、weibo_posts_clean.csv、weibo_reposts_clean.csv、weibo_comments_clean.csv、qqmusic_comments_clean.csv 与 label_rules.xlsx。
+[2026-05-31 12:09:20] 规则清理：占位符转unclear 1318 条；唯一原唱支持张碧晨修复 5 条；纯法律讨论转neutral 185 条；低置信度收回stance 6382 条；stance变更 6572 条，frame变更 0 条。
+[2026-05-31 12:13:33] 有选择的安全赋值（弱推断）：仅处理 stance 为 unclear 且 text_clean 长度>10 的 5755 条；按框架推断 stance，frame 不明确时统一赋为 platform_meta + neutral；stance unclear 由 7701 条降至 1946 条，frame unclear 由 1322 条保留不变；目标集赋值后 stance 分布 {'neutral': 3423, 'anti_fanwar': 1502, 'support_zhang': 830}，frame 分布 {'platform_meta': 1945, 'fan_conflict': 1502, 'copyright_authorization': 1102, 'original_singer': 830, 'legal_discussion': 194, 'creator_identity': 178, 'memory_emotion': 4}。
+[2026-05-31 12:22:38] 靶向修复：纠正弱推断导致的立场偏差。仅修改当前 stance 为 neutral 且 text_clean 长度>10 的样本；按创作者支持、张碧晨批评、张碧晨同情、粉丝冲突倾向与框架攻击修正依次执行；本轮命中 stance 修复 46 条，frame 修复 2 条，placeholder frame 设为 unclear 0 条；stance unclear 由 1946 条降至 1946 条，frame unclear 当前 1322 条。
+[2026-05-31 12:26:56] 靶向修复（用户复核修正）：已按 9 条反馈修正 stance/frame 并同步到三个子表；命中情况 {'repost_250': 1, 'repost_552': 1, 'repost_912': 1, 'repost_1439': 1, 'repost_1578': 1, 'repost_1593': 1, 'comment_5194233952603942': 1, 'comment_5192279396715212': 1, 'comment_5192275126912459': 1, 'comment_5192393856386376': 1}.
+
+最后一次保守规则清洗：stance命中5条，frame命中0条，无意义文本命中1318条；已同步到三个子表。
+批量规则修正（batch_review_1 模式学习）：eligible=11，support_wang=3，support_zhang=0，已同步到三个子表。
+text_clean 回复@修复：修复前text_clean=回复共11行，修复前且text_raw较长的回复行11行，修复后text_clean=回复共11行，本次覆盖修复0行；已同步到三个子表。
+text_clean 回复@修复：修复前text_clean=回复共11行，修复前且text_raw较长的回复行11行，修复后text_clean=回复共0行，本次覆盖修复11行；已同步到三个子表。
+unclear stance 关键词回填：eligible=1924，matched_rows=233，updated_rows=233；已同步到三个子表。
+
+[2026-05-31] 第五轮：platform_cases_clean.csv完全重建。
+- 原始D_data/platform_cases.csv仅有104条精选案例，已从全部原始数据重建为2862行（104案例+867豆瓣评论+1891知乎评论）。
+- 案例行保留E人工标注，评论行采用多层标注（120+正则模式+平台基线推断+232条人工逐条分类）。
+- stance unclear由初始78.3%降至42.6%，新增标注1020条。
+- frame由76.1% unclear降至46.9%，新增标注837条。
+- emotion由100% unclear降至78.2%，新增标注623条。
+- 豆瓣评论 stance unclear仅16.6%（503/867标注为support_zhang，符合平台特征）。
+
+[2026-05-31] 第五轮：全局emotion补全。
+- 对qqmusic_comments_clean.csv（492行）、all_weibo_texts_clean.csv（8406行）、weibo_posts_clean.csv（903行）、weibo_comments_clean.csv（5000行）、weibo_reposts_clean.csv（2503行）统一应用emotion检测规则。
+- 全局共填补3727条emotion标注。
+- qqmusic: stance 91.7%→79.3% unclear, frame 97.2%→71.5% unclear, emotion 100%→84.8% unclear。
+- all_weibo: emotion 100%→76.7% unclear。
+- weibo_posts: emotion 100%→57.8% unclear。
+- weibo_comments: emotion 100%→86.0% unclear。
+- weibo_reposts: emotion 100%→75.5% unclear。
